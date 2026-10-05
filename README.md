@@ -1,3 +1,7 @@
+LEPSI VERZE V videogenator.docx
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 Verze 1
 groq llama-3.3-70b / později GPT-4o-mini 
 FFmpeg 
