@@ -1,52 +1,71 @@
-LEPSI VERZE V videogenator.docx
+# VideoGenerator
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Cílem je automaticky vytvářet krátká videa ve formátu 9:16 o statistikách v Evropě. Video bude obsahovat mapu, porovnání zemí, hudbu a případně komentář.
 
-Verze 1
-groq llama-3.3-70b / později GPT-4o-mini 
-FFmpeg 
-Python
+![Ukázka stylu videa](assets/ukazka-videa.png)
 
-Pozadí a hudba stažená
-Zkusit udelat UI pres github pomoci “issue”
+## Technologie
 
-Cíl → vytvořit 9:16, velmi krátké video o nějaké statistice v Evropě
-s hudbou a pozadím, viz obrázek
+- **Python** – zpracování dat, scénář a grafické prvky.
+- **FFmpeg** – sestavení výsledného videa, hudba a titulky.
+- **SVG** – mapa Evropy a popisky států.
+- **LLM / AI API** – generování scénáře ve formátu JSON (např. Groq, případně placené ChatGPT).
+- **GitHub** – uložení a sdílení kódu.
+- **GitHub Actions** – automatické spouštění.
+- **E-mail** – schvalování videí.
 
-LLM vytvoří do JSON formátu skript 
-skript = (premise, odpoví na otázku, srovná země)
-programem přiřadíme odpovědi k zemím evropy na svg formátu,
-budeme muset také upravit velikost textu,
-dáme jim barvy podle porovnání, přidáme pozadí, hudbu
 
-Každé video bude muset projít schválením kvality od nás
-Videa se budou automaticky uploadovat 3 krát denně po 8 h
+### Verze 1
 
-Verze 2
-self learning - ze statistik yt, ig, a tt
-po několika dnech s pomocí metrik vybere úspěšná a neúspěšná videa a upraví podle nich prompt, AI nebude moct upravovat celý prompt ale pouze část kterou určíme
+- AI vytvoří scénář ve formátu JSON: otázku, odpovědi a porovnání evropských zemí.
+- Python přiřadí hodnoty státům na mapě Evropy ve formátu SVG.
+- Upravení velikosti textu a obarvení zemí podle výsledků.
+- Přidání pozadí a hudby, následně sestavení videa přes FFmpeg.
+- Každé video nejprve ručně schválíme.
+- Cíl: připravovat 3 videa denně, přibližně po 8 hodinách.
 
-Verze 3
-Png charakter v ruznych stylech, který vypráví informace o videu
-ElevenLabs
-LLM navíc ještě vytváří scénář jako vyprávění o mapě spolu s časováním a reakcí charakteru. 
-ElevenLabs vytvoří z textu AI hlas a pomocí ffmpegu udela titulky. 
-Dále v této verzi chceme přidat zvyrazneni a zoomování zemí o kterých zrovna mluví a případně nějaké doplňující obrázky a zvuky
+### Verze 2
 
-Schvalování
-GitHub Actions
-E-mail
-Po vygenerování videa se automaticky odešle e-mail ke schválení
-V e-mailu bude odkaz na video a možnosti → schválit, zamítnout, vygenerovat další
-Podle odpovědi se automaticky spustí další krok
-E-mail bude sloužit jako jednoduché UI, nebude potřeba vytvářet vlastní aplikaci
+- Vyhodnocování statistik videí z YouTube, Instagramu a TikToku.
+- Podle výsledků upravovat vybrané části promptu.
+- AI bude smět měnit pouze předem určené části promptu.
 
-Cloud
-GitHub
-GitHub Actions
-Python
-FFmpeg
-Celý projekt bude běžet v cloudu, takže nebude závislý na našich počítačích
-Kód bude uložený na GitHubu a GitHub Actions bude automaticky spouštět generování videí
-Python se postará o generování skriptu, map a dalších prvků, FFmpeg o výsledné video
-Projekt bude přístupný pro oba z různých zařízení a bude možné ho automaticky spouštět 3× denně
+### Verze 3
+
+- PNG postavička v různých stylech, která vypráví informace ve videu.
+- Scénář včetně časování a reakcí postavičky.
+- Generování hlasu přes ElevenLabs.
+- Automatické titulky pomocí FFmpeg.
+- Zvýraznění a přibližování právě probíraných zemí.
+- Případné doplnění dalších obrázků a zvuků.
+
+## Schvalování
+
+- Po vygenerování videa se odešle e-mail s odkazem.
+- Možnosti: **schválit**, **zamítnout**, **vygenerovat další**.
+- Podle odpovědi se automaticky spustí další krok.
+- E-mail bude sloužit jako jednoduché rozhraní, není potřeba vytvářet vlastní aplikaci.
+
+## Provoz
+
+- Kód bude uložený na GitHubu.
+- Generování poběží na GitHub-hosted runneru `ubuntu-latest`.
+- GitHub Actions bude spouštět generování automaticky 3× denně pomocí cron plánovače.
+- Nebude potřeba mít zapnutý vlastní počítač.
+- Runner automaticky nainstaluje Python, potřebné knihovny a FFmpeg.
+- Python připraví scénář, mapu a další prvky; FFmpeg z nich vytvoří video.
+- Hotové video se uloží mezi GitHub Actions Artifacts, odkud si ho budeme moci stáhnout.
+- Artefakty budou uchovávány po omezenou dobu, například 7 dní.
+- Pokud bezplatné možnosti AI nebudou stačit, můžeme přejít na placené řešení.
+
+### GitHub Free
+
+- Soukromý repozitář má v rámci GitHub Free limit 2 000 minut GitHub Actions měsíčně.
+- Při třech videích denně počítáme přibližně s 90 běhy za měsíc.
+- To vychází na průměrně 22 minut na jeden běh.
+- Do času se započítává instalace závislostí i samotné generování videa.
+- Pokud jeden běh trvá 15 minut, spotřebujeme přibližně 1 350 minut měsíčně.
+- Pokud jeden běh trvá 20 minut, spotřebujeme přibližně 1 800 minut měsíčně.
+- Pokud jeden běh trvá 25 minut, překročíme měsíční limit.
+- GitHub Free by tedy mohl stačit, pokud se průměrná doba běhu vejde do dostupného limitu.
+- Kromě toho je potřeba sledovat velikost uložených artefaktů.
