@@ -2,8 +2,6 @@
 
 Cílem je automaticky vytvářet krátká videa ve formátu 9:16 o statistikách v Evropě. Video bude obsahovat mapu, porovnání zemí, hudbu a případně komentář.
 
-![Ukázka stylu videa](assets/ukazka-videa.png)
-
 ## Technologie
 
 - **Python** – zpracování dat, scénář a grafické prvky.
