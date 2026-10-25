@@ -56,14 +56,3 @@ Cílem je automaticky vytvářet krátká videa ve formátu 9:16 o statistikách
 - Artefakty budou uchovávány po omezenou dobu, například 7 dní.
 - Pokud bezplatné možnosti AI nebudou stačit, můžeme přejít na placené řešení.
 
-### GitHub Free
-
-- Soukromý repozitář má v rámci GitHub Free limit 2 000 minut GitHub Actions měsíčně.
-- Při třech videích denně počítáme přibližně s 90 běhy za měsíc.
-- To vychází na průměrně 22 minut na jeden běh.
-- Do času se započítává instalace závislostí i samotné generování videa.
-- Pokud jeden běh trvá 15 minut, spotřebujeme přibližně 1 350 minut měsíčně.
-- Pokud jeden běh trvá 20 minut, spotřebujeme přibližně 1 800 minut měsíčně.
-- Pokud jeden běh trvá 25 minut, překročíme měsíční limit.
-- GitHub Free by tedy mohl stačit, pokud se průměrná doba běhu vejde do dostupného limitu.
-- Kromě toho je potřeba sledovat velikost uložených artefaktů.
