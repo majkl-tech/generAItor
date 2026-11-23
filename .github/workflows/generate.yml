@@ -21,5 +21,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install dependencies
+        run: pip install groq
+
       - name: Run Python script
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: python core/main.py
+        
